@@ -2177,19 +2177,7 @@ class Asset_kind(Enum):
 
     Instance = "Instance"
     """
-    concrete, clearly identifiable component of a certain type
-
-    .. note::
-
-        It becomes an individual entity of a type, for example a device, by defining
-        specific property values.
-
-    .. note::
-
-        In an object oriented view, an instance denotes an object of a class
-        (of a type).
-
-    [SOURCE: IEC 62890:2016, 3.1.16] 65/617/CDV
+    Instance asset
     """
 
 
