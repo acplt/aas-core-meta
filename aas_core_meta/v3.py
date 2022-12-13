@@ -2172,10 +2172,7 @@ class Asset_kind(Enum):
 
     Type = "Type"
     """
-    hardware or software element which specifies the common attributes shared by all
-    instances of the type
-
-    [SOURCE: IEC TR 62390:2005-01, 3.1.25]
+    Type asset
     """
 
     Instance = "Instance"
