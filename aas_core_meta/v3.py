@@ -2211,7 +2211,7 @@ class Specific_asset_id(Has_semantics):
     value: Non_empty_string
     """The value of the specific asset identifier with the corresponding name."""
 
-    external_subject_id: "Reference"
+    external_subject_id: Optional["Reference"]
     """
     The (external) subject the key belongs to or has meaning to.
 
@@ -2224,7 +2224,7 @@ class Specific_asset_id(Has_semantics):
         self,
         name: Non_empty_string,
         value: Non_empty_string,
-        external_subject_id: "Reference",
+        external_subject_id: Optional["Reference"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
     ) -> None:
