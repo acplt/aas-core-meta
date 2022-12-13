@@ -2361,7 +2361,7 @@ class Submodel(
 @reference_in_the_book(section=(5, 7, 6))
 # fmt: on
 class Submodel_element(
-    Referable, Has_kind, Has_semantics, Qualifiable, Has_data_specification
+    Referable, Has_semantics, Qualifiable, Has_data_specification
 ):
     """
     A submodel element is an element suitable for the description and differentiation of
@@ -2378,7 +2378,6 @@ class Submodel_element(
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
         checksum: Optional["Non_empty_string"] = None,
-        kind: Optional["Modeling_kind"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -2395,8 +2394,6 @@ class Submodel_element(
             description=description,
             checksum=checksum,
         )
-
-        Has_kind.__init__(self, kind=kind)
 
         Has_semantics.__init__(
             self,
