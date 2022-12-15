@@ -1603,18 +1603,6 @@ class Referable(Has_extensions):
     provided.
     """
 
-    checksum: Optional["Non_empty_string"]
-    """
-    Checksum to be used to determine if an Referable (including its
-    aggregated child elements) has changed.
-
-    The checksum is calculated by the user's tool environment.
-    The checksum has no semantic meaning for an asset administration
-    shell model and there is no requirement for asset administration
-    shell tools to manage the checksum
-
-    """
-
     def __init__(
         self,
         extensions: Optional[List["Extension"]] = None,
@@ -1622,7 +1610,6 @@ class Referable(Has_extensions):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
     ) -> None:
         Has_extensions.__init__(self, extensions=extensions)
 
@@ -1630,7 +1617,6 @@ class Referable(Has_extensions):
         self.display_name = display_name
         self.category = category
         self.description = description
-        self.checksum = checksum
 
 
 @abstract
@@ -1659,7 +1645,6 @@ class Identifiable(Referable):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         administration: Optional["Administrative_information"] = None,
     ) -> None:
         Referable.__init__(
@@ -1669,7 +1654,6 @@ class Identifiable(Referable):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
         )
 
         self.id = id
@@ -2031,7 +2015,6 @@ class Asset_administration_shell(Identifiable, Has_data_specification):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         administration: Optional["Administrative_information"] = None,
         embedded_data_specifications: Optional[
             List["Embedded_data_specification"]
@@ -2047,7 +2030,6 @@ class Asset_administration_shell(Identifiable, Has_data_specification):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             administration=administration,
         )
 
@@ -2286,7 +2268,6 @@ class Submodel(
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         administration: Optional["Administrative_information"] = None,
         kind: Optional["Modeling_kind"] = None,
         semantic_id: Optional["Reference"] = None,
@@ -2305,7 +2286,6 @@ class Submodel(
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             administration=administration,
         )
 
@@ -2362,7 +2342,6 @@ class Submodel_element(
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -2377,7 +2356,6 @@ class Submodel_element(
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
         )
 
         Has_semantics.__init__(
@@ -2419,7 +2397,6 @@ class Relationship_element(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -2434,7 +2411,6 @@ class Relationship_element(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -2625,7 +2601,6 @@ class Submodel_element_list(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -2644,7 +2619,6 @@ class Submodel_element_list(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -2700,7 +2674,6 @@ class Submodel_element_collection(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -2716,7 +2689,6 @@ class Submodel_element_collection(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -2771,7 +2743,6 @@ class Data_element(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -2786,7 +2757,6 @@ class Data_element(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -2848,7 +2818,6 @@ class Property(Data_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -2865,7 +2834,6 @@ class Property(Data_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -2923,7 +2891,6 @@ class Multi_language_property(Data_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -2940,7 +2907,6 @@ class Multi_language_property(Data_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -2998,7 +2964,6 @@ class Range(Data_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3015,7 +2980,6 @@ class Range(Data_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3049,7 +3013,6 @@ class Reference_element(Data_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3065,7 +3028,6 @@ class Reference_element(Data_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3112,7 +3074,6 @@ class Blob(Data_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3128,7 +3089,6 @@ class Blob(Data_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3169,7 +3129,6 @@ class File(Data_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3185,7 +3144,6 @@ class File(Data_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3226,7 +3184,6 @@ class Annotated_relationship_element(Relationship_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3244,7 +3201,6 @@ class Annotated_relationship_element(Relationship_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3351,7 +3307,6 @@ class Entity(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -3369,7 +3324,6 @@ class Entity(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3526,7 +3480,6 @@ class Event_element(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3541,7 +3494,6 @@ class Event_element(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3656,7 +3608,6 @@ class Basic_event_element(Event_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List[Qualifier]] = None,
@@ -3676,7 +3627,6 @@ class Basic_event_element(Event_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3741,7 +3691,6 @@ class Operation(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -3759,7 +3708,6 @@ class Operation(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -3806,7 +3754,6 @@ class Capability(Submodel_element):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
         qualifiers: Optional[List["Qualifier"]] = None,
@@ -3821,7 +3768,6 @@ class Capability(Submodel_element):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             semantic_id=semantic_id,
             supplemental_semantic_ids=supplemental_semantic_ids,
             qualifiers=qualifiers,
@@ -4214,7 +4160,6 @@ class Concept_description(Identifiable, Has_data_specification):
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
-        checksum: Optional["Non_empty_string"] = None,
         administration: Optional["Administrative_information"] = None,
         embedded_data_specifications: Optional[
             List["Embedded_data_specification"]
@@ -4229,7 +4174,6 @@ class Concept_description(Identifiable, Has_data_specification):
             id_short=id_short,
             display_name=display_name,
             description=description,
-            checksum=checksum,
             administration=administration,
         )
 
