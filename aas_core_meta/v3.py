@@ -1308,9 +1308,13 @@ class BCP_47_language_tag(str, DBC):
     lambda self: matches_MIME_type(self),
     "The value must represent a valid content MIME type according to RFC 2046.",
 )
+@invariant(
+    lambda self: len(self) <= 100,
+    "ContentType shall have a maximum length of 100 characters.",
+)
 class Content_type(Non_empty_string, DBC):
     """
-    string
+    String with length 100 maximum and minimum 1 characters
 
     .. note::
 
