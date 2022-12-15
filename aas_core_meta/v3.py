@@ -1279,6 +1279,17 @@ class Label_type(Non_empty_string, DBC):
     """
 
 
+@reference_in_the_book(section=(5, 3, 11, 2))
+@invariant(
+    lambda self: len(self) <= 255,
+    "LabelType shall have a maximum length of 255 characters.",
+)
+class Message_topic_type(Non_empty_string, DBC):
+    """
+    string with length 255 maximum and minimum 1 characters
+    """
+
+
 # noinspection SpellCheckingInspection
 @invariant(
     lambda self: matches_BCP_47(self),
