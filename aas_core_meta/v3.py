@@ -3593,7 +3593,7 @@ class Basic_event_element(Event_element):
     Can be ``{ On, Off }``.
     """
 
-    message_topic: Optional["Non_empty_string"]
+    message_topic: Optional["Message_topic_type"]
     """
     Information for the outer message infrastructure for scheduling the event to the
     respective communication channel.
@@ -3657,7 +3657,7 @@ class Basic_event_element(Event_element):
         embedded_data_specifications: Optional[
             List["Embedded_data_specification"]
         ] = None,
-        message_topic: Optional["Non_empty_string"] = None,
+        message_topic: Optional["Message_topic_type"] = None,
         message_broker: Optional["Reference"] = None,
         last_update: Optional["Date_time_stamp_UTC"] = None,
         min_interval: Optional["Date_time_stamp_UTC"] = None,
