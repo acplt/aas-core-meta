@@ -1268,6 +1268,17 @@ class Short_name_type(Non_empty_string, DBC):
     """
 
 
+@reference_in_the_book(section=(5, 3, 11, 2))
+@invariant(
+    lambda self: len(self) <= 64,
+    "LabelType shall have a maximum length of 64 characters.",
+)
+class Label_type(Non_empty_string, DBC):
+    """
+    string with length 64 maximum and 1 minimum characters
+    """
+
+
 # noinspection SpellCheckingInspection
 @invariant(
     lambda self: matches_BCP_47(self),
