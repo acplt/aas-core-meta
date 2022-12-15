@@ -3467,7 +3467,7 @@ class Event_payload(DBC):
         It is recommended to use a global reference.
     """
 
-    topic: Optional["Non_empty_string"]
+    topic: Optional["Message_topic_type"]
     """
     Information for the outer message infrastructure for scheduling the event to
     the respective communication channel.
@@ -3499,7 +3499,7 @@ class Event_payload(DBC):
         time_stamp: "Date_time_stamp_UTC",
         source_semantic_id: Optional["Reference"] = None,
         observable_semantic_id: Optional["Reference"] = None,
-        topic: Optional["Non_empty_string"] = None,
+        topic: Optional["Message_topic_type"] = None,
         subject_id: Optional["Reference"] = None,
         payload: Optional["Non_empty_string"] = None,
     ) -> None:
