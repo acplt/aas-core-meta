@@ -4490,10 +4490,10 @@ class Key(DBC):
     The name of the model element is explicitly listed.
     """
 
-    value: Non_empty_string
+    value: "Identifier"
     """The key value, for example an IRDI or an URI"""
 
-    def __init__(self, type: "Key_types", value: Non_empty_string) -> None:
+    def __init__(self, type: "Key_types", value: "Identifier") -> None:
         self.type = type
         self.value = value
 
