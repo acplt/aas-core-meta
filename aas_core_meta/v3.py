@@ -1247,6 +1247,17 @@ class Identifier(Non_empty_string, DBC):
     """
 
 
+@reference_in_the_book(section=(5, 3, 11, 2))
+@invariant(
+    lambda self: len(self) <= 128,
+    "Nametype shall have a maximum length of 128 characters.",
+)
+class Name_type(Non_empty_string, DBC):
+    """
+    string with length 128 maximum and 1 minimum
+    """
+
+
 # noinspection SpellCheckingInspection
 @invariant(
     lambda self: matches_BCP_47(self),
