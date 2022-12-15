@@ -4190,9 +4190,9 @@ class Reference_types(Enum):
     ReferenceTypes
     """
 
-    Global_reference = "GlobalReference"
+    External_reference = "ExternalReference"
     """
-    GlobalReference.
+    ExternalReference.
     """
 
     Model_reference = "ModelReference"
@@ -4265,7 +4265,7 @@ class Reference_types(Enum):
 @invariant(
     lambda self:
     not (
-        self.type == Reference_types.Global_reference
+        self.type == Reference_types.External_reference
         and len(self.keys) >= 1
     )
     or (
@@ -4288,7 +4288,7 @@ class Reference_types(Enum):
 @invariant(
     lambda self:
     not (
-        self.type == Reference_types.Global_reference
+        self.type == Reference_types.External_reference
         and len(self.keys) >= 1
     )
     or self.keys[0].type in Generic_globally_identifiables,
@@ -4329,7 +4329,7 @@ class Reference(DBC):
     :constraint AASd-122:
 
         For global references, i.e. :class:`Reference`'s with
-        :attr:`Reference.type` = :attr:`Reference_types.Global_reference`, the type
+        :attr:`Reference.type` = :attr:`Reference_types.External_reference`, the type
         of the first key of :attr:`Reference.keys` shall be one of
         :const:`Generic_globally_identifiables`.
 
@@ -4343,7 +4343,7 @@ class Reference(DBC):
     :constraint AASd-124:
 
         For global references, i.e. :class:`Reference`'s with
-        :attr:`Reference.type` = :attr:`Reference_types.Global_reference`, the last
+        :attr:`Reference.type` = :attr:`Reference_types.External_reference`, the last
         key of :attr:`Reference.keys` shall be either one of
         :const:`Generic_globally_identifiables` or one of
         :const:`Generic_fragment_keys`.
@@ -4461,7 +4461,7 @@ class Key_types(Enum):
     a primary resource
     """
 
-    Global_reference = "GlobalReference"
+    External_reference = "ExternalReference"
 
     Annotated_relationship_element = "AnnotatedRelationshipElement"
     Asset_administration_shell = "AssetAdministrationShell"
@@ -4554,7 +4554,7 @@ assert Key_types.Fragment_reference in Generic_fragment_keys, (
 
 Generic_globally_identifiables: Set[Key_types] = constant_set(
     values=[
-        Key_types.Global_reference,
+        Key_types.External_reference,
     ],
     description="Enumeration of different key value types within a key.",
     reference_in_the_book=reference_in_the_book(section=(5, 7, 10, 3), index=8),
@@ -4653,7 +4653,7 @@ Aas_referables: Set[Key_types] = constant_set(
 
 Globally_identifiables: Set[Key_types] = constant_set(
     values=[
-        Key_types.Global_reference,
+        Key_types.External_reference,
         Key_types.Asset_administration_shell,
         Key_types.Concept_description,
         Key_types.Identifiable,
