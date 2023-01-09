@@ -4310,8 +4310,9 @@ class Reference_types(Enum):
         self.keys[-1].type in Generic_globally_identifiables
         or self.keys[-1].type in Generic_fragment_keys
     ),
-    "Constraint AASd-124: For global references the last key shall be either one of "
-    "Generic globally identifiables or one of Generic fragment keys."
+    "Constraint AASd-124: For external references, i.e. References with "
+    "Reference/type = ExternalReference, the last key of Reference/keys shall be "
+    "either one of Generic globally identifiables or one of Generic fragment keys."
 )
 @invariant(
     lambda self:
@@ -4382,7 +4383,7 @@ class Reference(DBC):
 
     :constraint AASd-124:
 
-        For global references, i.e. :class:`Reference`'s with
+        For external references, i.e. :class:`Reference`'s with
         :attr:`Reference.type` = :attr:`Reference_types.External_reference`, the last
         key of :attr:`Reference.keys` shall be either one of
         :const:`Generic_globally_identifiables` or one of
