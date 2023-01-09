@@ -4297,8 +4297,10 @@ class Reference_types(Enum):
             for i in range(1, len(self.keys))
         )
     ),
-    "Constraint AASd-125: For model references with more than one key, the type of "
-    "the keys following the first key shall be one of Fragment keys."
+    "Constraint AASd-125: For model references, i.e. References with "
+    "Reference/type = ModelReference, with more than one key in Reference/keys "
+    "the value of Key/type of each of the keys following the first key "
+    "of Reference/keys shall be one of Fragment keys."
 )
 @invariant(
     lambda self:
@@ -4393,7 +4395,8 @@ class Reference(DBC):
 
         For model references, i.e. :class:`Reference`'s with
         :attr:`Reference.type` = :attr:`Reference_types.Model_reference`, with more
-        than one key in :attr:`Reference.keys` the type of the keys following the first
+        than one key in :attr:`Reference.keys` the value of :attr:`Key.type`
+        of each of the keys following the first
         key of :attr:`Reference.keys` shall be one of :const:`Fragment_keys`.
 
         .. note::
