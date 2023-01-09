@@ -7,7 +7,7 @@ We could not implement the following constraints as they are too general and can
 be formalized as part of the core library, but affects external components such as
 AAS registry or AAS server:
 
-:constraint AASd-120:
+:constraint AASd-022:
 
     :attr:`Referable.id_short` of non-identifiable referables shall be unique in its
     namespace.
@@ -2147,7 +2147,7 @@ class Specific_asset_id(Has_semantics):
     lambda self:
     not (self.submodel_elements is not None)
     or (id_shorts_are_unique(self.submodel_elements)),
-    "Constraint AASd-120: ID-short of non-identifiable referables shall be unique "
+    "Constraint AASd-022: ID-short of non-identifiable referables shall be unique "
     "in its namespace."
 )
 @invariant(
