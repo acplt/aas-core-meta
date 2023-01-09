@@ -1469,7 +1469,7 @@ class Extension(Has_semantics):
 
     :constraint AASd-077:
 
-        The name of an extension within :class:`Has_extensions` needs to be unique.
+        The name of an extension (Extension/name) within :class:`Has_extensions` needs to be unique.
     """
 
     value_type: Optional["Data_type_def_xsd"]
@@ -1524,7 +1524,7 @@ class Extension(Has_semantics):
 @invariant(
     lambda self:
     not (self.extensions is not None) or extension_names_are_unique(self.extensions),
-    "Constraint AASd-077: The name of an extension within Has-Extensions "
+    "Constraint AASd-077: The name of an extension (Extension/name) within Has-Extensions "
     "needs to be unique."
 )
 @invariant(
