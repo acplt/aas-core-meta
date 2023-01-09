@@ -4269,8 +4269,10 @@ class Reference_types(Enum):
       self.keys[-2].type == Key_types.File
       or self.keys[-2].type == Key_types.Blob
     ),
-    "Constraint AASd-127: For model references with more than one key, a key with type "
-    "Fragment reference shall be preceded by a key with type File or Blob."
+    "Constraint AASd-127: For model references, i.e. References with "
+    "Reference/type = ModelReference, "
+    "with more than one key in Reference/keys a key with Key/type "
+    "Fragment reference shall be preceded by a key with Key/type File or Blob. "
 )
 @invariant(
     lambda self:
@@ -4421,8 +4423,8 @@ class Reference(DBC):
         than one key in :attr:`Reference.keys` a key with :attr:`Key.type`
         :attr:`Key_types.Fragment_reference` shall be preceded by a key with
         :attr:`Key.type` :attr:`Key_types.File` or :attr:`Key_types.Blob`. All other
-        AAS fragments, i.e. type values out of :const:`Aas_submodel_elements_as_keys`,
-        do not support fragments.
+        AAS fragments, i.e. :attr:`Key.type` values
+        out of :const:`Aas_submodel_elements_as_keys`, do not support fragments.
 
         .. note::
 
