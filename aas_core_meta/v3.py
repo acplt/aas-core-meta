@@ -2097,8 +2097,8 @@ class Specific_asset_id(Has_semantics):
 
     def __init__(
         self,
-        name: Non_empty_string,
-        value: Non_empty_string,
+        name: Label_type,
+        value: Identifier,
         external_subject_id: Optional["Reference"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
