@@ -538,44 +538,6 @@ def matches_xs_double(text: str) -> bool:
 
 
 @verification
-def matches_xs_duration(text: str) -> bool:
-    """
-    Check that :paramref:`text` conforms to the pattern of an ``xs:duration``.
-
-    See: https://www.w3.org/TR/xmlschema11-2/#duration
-
-    :param text: Text to be checked
-    :returns: True if the :paramref:`text` conforms to the pattern
-    """
-    # NOTE (mristin, 2022-04-6):
-    # See https://www.w3.org/TR/xmlschema11-2/#nt-durationRep
-
-    # fmt: off
-    duration_rep = (
-r"-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?"
-      r"|([0-9]+M)([0-9]+D)?"
-      r"|([0-9]+D)"
-      r")"
-      r"(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?"
-         r"|([0-9]+M)([0-9]+(\.[0-9]+)?S)?"
-         r"|([0-9]+(\.[0-9]+)?S)"
-         r")"
-      r")?"
-   r")"
- r"|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?"
-      r"|([0-9]+M)([0-9]+(\.[0-9]+)?S)?"
-      r"|([0-9]+(\.[0-9]+)?S)"
-      r")"
-   r")"
- r")"
-    )
-    # fmt: on
-
-    pattern = f"^{duration_rep}$"
-    return match(pattern, text) is not None
-
-
-@verification
 def matches_xs_float(text: str) -> bool:
     """
     Check that :paramref:`text` conforms to the pattern of an ``xs:float``.
@@ -4670,7 +4632,6 @@ class Data_type_def_xsd(Enum):
     Date_time = "xs:dateTime"
     Date_time_stamp = "xs:dateTimeStamp"
     Double = "xs:double"
-    Duration = "xs:duration"
     Float = "xs:float"
     G_day = "xs:gDay"
     G_month = "xs:gMonth"

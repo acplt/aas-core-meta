@@ -301,44 +301,6 @@ class Test_matches_xs_double(unittest.TestCase):
         assert not v3.matches_xs_double("nan")
 
 
-class Test_matches_xs_duration(unittest.TestCase):
-    def test_empty(self) -> None:
-        assert not v3.matches_xs_duration("")
-
-    def test_free_form_text(self) -> None:
-        assert not v3.matches_xs_duration("some free form text")
-
-    def test_integer(self) -> None:
-        assert not v3.matches_xs_duration("1234")
-
-    # NOTE (mristin, 2022-04-6):
-    # See https://www.data2type.de/xml-xslt-xslfo/xml-schema/datentypen-referenz/xs-duration
-
-    def test_valid_values(self) -> None:
-        for text in [
-            "PT1004199059S",
-            "PT130S",
-            "PT2M10S",
-            "P1DT2S",
-            "-P1Y",
-            "P1Y2M3DT5H20M30.123S",
-        ]:
-            self.assertTrue(v3.matches_xs_duration(text), text)
-
-    def test_leading_P_missing(self) -> None:
-        assert not v3.matches_xs_duration("1Y")
-
-    def test_separator_T_missing(self) -> None:
-        assert not v3.matches_xs_duration("P1S")
-
-    def test_not_all_parts_positive(self) -> None:
-        assert not v3.matches_xs_duration("P-1Y")
-        assert not v3.matches_xs_duration("P1Y-1M")
-
-    def test_the_order_matters(self) -> None:
-        assert not v3.matches_xs_duration("P1M2Y")
-
-
 class Test_matches_xs_float(unittest.TestCase):
     def test_empty(self) -> None:
         assert not v3.matches_xs_float("")
