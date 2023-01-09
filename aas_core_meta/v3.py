@@ -4719,7 +4719,6 @@ class Data_type_def_xsd(Enum):
     String = "xs:string"
     Time = "xs:time"
     Day_time_duration = "xs:dayTimeDuration"
-    Year_month_duration = "xs:yearMonthDuration"
     Integer = "xs:integer"
     Long = "xs:long"
     Int = "xs:int"
