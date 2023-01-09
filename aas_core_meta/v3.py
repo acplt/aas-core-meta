@@ -4320,8 +4320,9 @@ class Reference_types(Enum):
         and len(self.keys) >= 1
     )
     or self.keys[0].type in Aas_identifiables,
-    "Constraint AASd-123: For model references the type of the first key shall be one "
-    "of AAS identifiables"
+    "Constraint AASd-123: For model references, i.e. References with "
+    "Reference/type = ModelReference, the value of Key/type of the first key "
+    "of Reference/keys shall be one of Aas identifiables."
 )
 @invariant(
     lambda self:
@@ -4375,8 +4376,8 @@ class Reference(DBC):
     :constraint AASd-123:
 
         For model references, i.e. :class:`Reference`'s with
-        :attr:`Reference.type` = :attr:`Reference_types.Model_reference`, the type
-        of the first key of :attr:`Reference.keys` shall be one of
+        :attr:`Reference.type` = :attr:`Reference_types.Model_reference`, the value
+        of :attr:`Key.type` of the first key of :attr:`Reference.keys` shall be one of
         :const:`Aas_identifiables`.
 
     :constraint AASd-124:
