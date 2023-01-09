@@ -774,22 +774,6 @@ def matches_xs_day_time_duration(text: str) -> bool:
 
 
 @verification
-def matches_xs_year_month_duration(text: str) -> bool:
-    """
-    Check that :paramref:`text` conforms to the pattern of an ``xs:yearMonthDuration``.
-
-    See: https://www.w3.org/TR/xmlschema11-2/#yearMonthDuration
-
-    :param text: Text to be checked
-    :returns: True if the :paramref:`text` conforms to the pattern
-    """
-    year_month_duration_rep = r"-?P((([0-9]+Y)([0-9]+M)?)|([0-9]+M))"
-
-    pattern = f"^{year_month_duration_rep}$"
-    return match(pattern, text) is not None
-
-
-@verification
 def matches_xs_integer(text: str) -> bool:
     """
     Check that :paramref:`text` conforms to the pattern of an ``xs:integer``.
