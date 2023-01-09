@@ -4269,10 +4269,9 @@ class Reference_types(Enum):
       self.keys[-2].type == Key_types.File
       or self.keys[-2].type == Key_types.Blob
     ),
-    "Constraint AASd-127: For model references, i.e. References with "
-    "Reference/type = ModelReference, "
-    "with more than one key in Reference/keys a key with Key/type "
-    "Fragment reference shall be preceded by a key with Key/type File or Blob. "
+    "Constraint AASd-127: For model references, with more than one key "
+    "in Reference/keys a key with Key/type Fragment reference shall be preceded "
+    "by a key with Key/type File or Blob. "
 )
 @invariant(
     lambda self:
@@ -4286,10 +4285,9 @@ class Reference_types(Enum):
             for i in range(0, len(self.keys) - 1)
         )
     ),
-    "Constraint AASd-126: For model references, i.e. References with "
-    "Reference/type = ModelReference, "
-    "with more than one key in Reference/keys the value of Key/type of the "
-    "last key in the reference key chain may be one of Generic fragment keys or "
+    "Constraint AASd-126: For model references with more than one key "
+    "in Reference/keys the value of Key/type of the last key "
+    "in the reference key chain may be one of Generic fragment keys or "
     "no key at all shall have a value out of Generic fragment keys."
 )
 @invariant(
@@ -4301,8 +4299,7 @@ class Reference_types(Enum):
             for i in range(1, len(self.keys))
         )
     ),
-    "Constraint AASd-125: For model references, i.e. References with "
-    "Reference/type = ModelReference, with more than one key in Reference/keys "
+    "Constraint AASd-125: For model references with more than one key in Reference/keys "
     "the value of Key/type of each of the keys following the first key "
     "of Reference/keys shall be one of Fragment keys."
 )
@@ -4316,9 +4313,9 @@ class Reference_types(Enum):
         self.keys[-1].type in Generic_globally_identifiables
         or self.keys[-1].type in Generic_fragment_keys
     ),
-    "Constraint AASd-124: For external references, i.e. References with "
-    "Reference/type = ExternalReference, the last key of Reference/keys shall be "
-    "either one of Generic globally identifiables or one of Generic fragment keys."
+    "Constraint AASd-124: For external references the last key of Reference/keys "
+    "shall be either one of Generic globally identifiables or "
+    "one of Generic fragment keys."
 )
 @invariant(
     lambda self:
@@ -4327,8 +4324,7 @@ class Reference_types(Enum):
         and len(self.keys) >= 1
     )
     or self.keys[0].type in Aas_identifiables,
-    "Constraint AASd-123: For model references, i.e. References with "
-    "Reference/type = ModelReference, the value of Key/type of the first key "
+    "Constraint AASd-123: For model references the value of Key/type of the first key "
     "of Reference/keys shall be one of Aas identifiables."
 )
 @invariant(
@@ -4338,9 +4334,8 @@ class Reference_types(Enum):
         and len(self.keys) >= 1
     )
     or self.keys[0].type in Generic_globally_identifiables,
-    "Constraint AASd-122: For external references, i.e. References with "
-    "Reference/type = ExternalReference, the value of Key/type of the first key "
-    "of Reference/keys shall be one of Generic globally identifiables."
+    "Constraint AASd-122: For external references the value of Key/type "
+    "of the first key of Reference/keys shall be one of Generic globally identifiables."
 )
 @invariant(
     lambda self:
