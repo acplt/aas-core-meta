@@ -1620,19 +1620,6 @@ class Referable(Has_extensions):
     display_name: Optional[List["Lang_string"]]
     """
     Display name. Can be provided in several languages.
-
-    If no display name is defined in the language requested by the application,
-    then the display name is selected in the following order if available:
-
-    * the preferred name in the requested language of the concept description defining
-      the semantics of the element
-    * If there is a default language list defined in the application,
-      then the corresponding preferred name in the language is chosen
-      according to this order.
-    * the English preferred name of the concept description defining
-      the semantics of the element
-    * the short name of the concept description
-    * the :attr:`id_short` of the element
     """
 
     description: Optional[List["Lang_string"]]
