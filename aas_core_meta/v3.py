@@ -519,31 +519,6 @@ def matches_xs_date_time_stamp(text: str) -> bool:
     return match(pattern, text) is not None
 
 
-# noinspection SpellCheckingInspection
-@verification
-def matches_xs_decimal(text: str) -> bool:
-    """
-    Check that :paramref:`text` conforms to the pattern of an ``xs:decimal``.
-
-    See: https://www.w3.org/TR/xmlschema11-2/#decimal
-
-    :param text: Text to be checked
-    :returns: True if the :paramref:`text` conforms to the pattern
-    """
-    digit = "[0-9]"
-    unsigned_no_decimal_pt_numeral = f"{digit}+"
-    no_decimal_pt_numeral = rf"(\+|-)?{unsigned_no_decimal_pt_numeral}"
-    frac_frag = f"{digit}+"
-    unsigned_decimal_pt_numeral = (
-        rf"({unsigned_no_decimal_pt_numeral}\.{frac_frag}|\.{frac_frag})"
-    )
-    decimal_pt_numeral = rf"(\+|-)?{unsigned_decimal_pt_numeral}"
-    decimal_lexical_rep = f"({decimal_pt_numeral}|{no_decimal_pt_numeral})"
-
-    pattern = f"^{decimal_lexical_rep}$"
-    return match(pattern, text) is not None
-
-
 @verification
 def matches_xs_double(text: str) -> bool:
     """
@@ -4748,7 +4723,6 @@ class Data_type_def_xsd(Enum):
     Date = "xs:date"
     Date_time = "xs:dateTime"
     Date_time_stamp = "xs:dateTimeStamp"
-    Decimal = "xs:decimal"
     Double = "xs:double"
     Duration = "xs:duration"
     Float = "xs:float"

@@ -255,29 +255,6 @@ class Test_matches_xs_date_time_stamp(unittest.TestCase):
         )
 
 
-class Test_matches_xs_decimal(unittest.TestCase):
-    def test_empty(self) -> None:
-        assert not v3.matches_xs_decimal("")
-
-    def test_free_form_text(self) -> None:
-        assert not v3.matches_xs_decimal("some free form text")
-
-    def test_integer(self) -> None:
-        assert v3.matches_xs_decimal("1234")
-
-    def test_decimal(self) -> None:
-        assert v3.matches_xs_decimal("1234.01234")
-
-    def test_integer_with_preceding_zeros(self) -> None:
-        assert v3.matches_xs_decimal("0001234")
-
-    def test_decimal_with_preceding_zeros(self) -> None:
-        assert v3.matches_xs_decimal("0001234.01234")
-
-    def test_scientific_notation(self) -> None:
-        assert not v3.matches_xs_decimal("12.123e123")
-
-
 class Test_matches_xs_double(unittest.TestCase):
     def test_empty(self) -> None:
         assert not v3.matches_xs_double("")
