@@ -1514,7 +1514,7 @@ class Referable(Has_extensions):
     def __init__(
         self,
         extensions: Optional[List["Extension"]] = None,
-        category: Optional[Non_empty_string] = None,
+        category: Optional[Name_type] = None,
         id_short: Optional[Id_short] = None,
         display_name: Optional[List["Lang_string"]] = None,
         description: Optional[List["Lang_string"]] = None,
