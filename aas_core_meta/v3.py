@@ -1219,9 +1219,9 @@ class Content_type(Non_empty_string, DBC):
     "The value must represent a valid file URI scheme according to RFC 8089.",
 )
 @reference_in_the_book(section=(5, 7, 12, 2))
-class Path_type(Non_empty_string, DBC):
+class Path_type(Identifier, DBC):
     """
-    string
+    Identifier
 
     .. note::
 
