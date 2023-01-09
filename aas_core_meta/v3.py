@@ -9,8 +9,8 @@ AAS registry or AAS server:
 
 :constraint AASd-022:
 
-    :attr:`Referable.id_short` of non-identifiable referables shall be unique in its
-    namespace.
+    :attr:`Referable.id_short` of non-identifiable referables
+    within the same name space shall be unique (case-sensitive).
 
 :constraint AASd-003:
 
@@ -2147,8 +2147,8 @@ class Specific_asset_id(Has_semantics):
     lambda self:
     not (self.submodel_elements is not None)
     or (id_shorts_are_unique(self.submodel_elements)),
-    "Constraint AASd-022: ID-short of non-identifiable referables shall be unique "
-    "in its namespace."
+    "Constraint AASd-022: ID-short of non-identifiable referables "
+    "within the same name space shall be unique (case-sensitive)."
 )
 @invariant(
     lambda self:
