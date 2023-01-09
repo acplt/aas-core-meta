@@ -1250,7 +1250,7 @@ class Value_data_type(str, DBC):
     "ID-short of Referables shall only feature letters, digits, underscore (``_``); "
     "starting mandatory with a letter. *I.e.* ``[a-zA-Z][a-zA-Z0-9_]+``.",
 )
-class Id_short(str, DBC):
+class Id_short(Name_type, DBC):
     """
     Represent a short ID of an :class:`Referable`.
 
