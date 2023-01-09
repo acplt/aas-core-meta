@@ -1250,10 +1250,6 @@ class Value_data_type(str, DBC):
     "ID-short of Referables shall only feature letters, digits, underscore (``_``); "
     "starting mandatory with a letter. *I.e.* ``[a-zA-Z][a-zA-Z0-9_]+``.",
 )
-@invariant(
-    lambda self: len(self) <= 128,
-    "Constraint AASd-027: ID-short shall have a maximum length of 128 characters.",
-)
 class Id_short(str, DBC):
     """
     Represent a short ID of an :class:`Referable`.
@@ -1263,11 +1259,6 @@ class Id_short(str, DBC):
         ID-short of :class:`Referable`'s shall only feature letters, digits,
         underscore (``_``); starting mandatory with a letter.
         *I.e.* ``[a-zA-Z][a-zA-Z0-9_]+``.
-
-    :constraint AASd-027:
-
-        ID-short of :class:`Referable`'s shall have a maximum length
-        of 128 characters.
     """
 
 
