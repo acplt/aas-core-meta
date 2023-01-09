@@ -1241,6 +1241,10 @@ class Blob_type(bytearray, DBC):
 
 
 @reference_in_the_book(section=(5, 7, 12, 2))
+@invariant(
+    lambda self: len(self) <= 2000,
+    "Identifier shall have a maximum length of 2000 characters.",
+)
 class Identifier(Non_empty_string, DBC):
     """
     string
