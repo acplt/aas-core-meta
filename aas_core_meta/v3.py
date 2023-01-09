@@ -12,10 +12,6 @@ AAS registry or AAS server:
     :attr:`Referable.id_short` of non-identifiable referables
     within the same name space shall be unique (case-sensitive).
 
-:constraint AASd-003:
-
-    :attr:`Referable.id_short` of :class:`Referable`'s shall be matched case-sensitive.
-
 We could not implement the following constraints since they depend on registry and
 de-referencing, so we can not formalize them with formalizing such external
 dependencies:
