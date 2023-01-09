@@ -2083,7 +2083,7 @@ class Specific_asset_id(Has_semantics):
     name: Label_type
     """Name of the identifier"""
 
-    value: Non_empty_string
+    value: Identifier
     """The value of the specific asset identifier with the corresponding name."""
 
     external_subject_id: Optional["Reference"]
