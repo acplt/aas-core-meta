@@ -4284,7 +4284,9 @@ class Reference_types(Enum):
             for i in range(0, len(self.keys) - 1)
         )
     ),
-    "Constraint AASd-126: For model references with more than one key, the type of the "
+    "Constraint AASd-126: For model references, i.e. References with "
+    "Reference/type = ModelReference, "
+    "with more than one key in Reference/keys the value of Key/type of the "
     "last key in the reference key chain may be one of Generic fragment keys or "
     "no key at all shall have a value out of Generic fragment keys."
 )
@@ -4407,9 +4409,10 @@ class Reference(DBC):
 
         For model references, i.e. :class:`Reference`'s with
         :attr:`Reference.type` = :attr:`Reference_types.Model_reference`, with more
-        than one key in :attr:`Reference.keys` the type of the last key in the
-        reference key chain may be one of :const:`Generic_fragment_keys` or no key
-        at all shall have a value out of :const:`Generic_fragment_keys`.
+        than one key in :attr:`Reference.keys` the value of :attr:`Key.type`
+        of the last key in the reference key chain may be
+        one of :const:`Generic_fragment_keys` or no key at all
+        shall have a value out of :const:`Generic_fragment_keys`.
 
     :constraint AASd-127:
 
