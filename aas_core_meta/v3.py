@@ -736,44 +736,6 @@ def matches_xs_time(text: str) -> bool:
 
 
 @verification
-def matches_xs_day_time_duration(text: str) -> bool:
-    """
-    Check that :paramref:`text` conforms to the pattern of an ``xs:dayTimeDuration``.
-
-    See: https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration
-
-    :param text: Text to be checked
-    :returns: True if the :paramref:`text` conforms to the pattern
-    """
-    # NOTE (mristin, 2022-04-6):
-    # See https://www.w3.org/TR/xmlschema11-2/#nt-durationRep and
-    # https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration related to pattern
-    # intersection
-
-    # fmt: off
-    day_time_duration_rep = (
-        r"-?P(("
-        r"([0-9]+D)"
-        r"(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?"
-        r"|([0-9]+M)([0-9]+(\.[0-9]+)?S)?"
-        r"|([0-9]+(\.[0-9]+)?S)"
-        r")"
-        r")?"
-        r")"
-        r"|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?"
-        r"|([0-9]+M)([0-9]+(\.[0-9]+)?S)?"
-        r"|([0-9]+(\.[0-9]+)?S)"
-        r")"
-        r")"
-        r")"
-    )
-    # fmt: on
-
-    pattern = f"^{day_time_duration_rep}$"
-    return match(pattern, text) is not None
-
-
-@verification
 def matches_xs_integer(text: str) -> bool:
     """
     Check that :paramref:`text` conforms to the pattern of an ``xs:integer``.
@@ -4718,7 +4680,6 @@ class Data_type_def_xsd(Enum):
     Hex_binary = "xs:hexBinary"
     String = "xs:string"
     Time = "xs:time"
-    Day_time_duration = "xs:dayTimeDuration"
     Integer = "xs:integer"
     Long = "xs:long"
     Int = "xs:int"
