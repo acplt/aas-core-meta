@@ -4330,8 +4330,9 @@ class Reference_types(Enum):
         and len(self.keys) >= 1
     )
     or self.keys[0].type in Generic_globally_identifiables,
-    "Constraint AASd-122: For global references the type of the first key shall be one "
-    "of Generic globally identifiables."
+    "Constraint AASd-122: For external references, i.e. References with "
+    "Reference/type = ExternalReference, the value of Key/type of the first key "
+    "of Reference/keys shall be one of Generic globally identifiables."
 )
 @invariant(
     lambda self:
@@ -4366,9 +4367,9 @@ class Reference(DBC):
 
     :constraint AASd-122:
 
-        For global references, i.e. :class:`Reference`'s with
-        :attr:`Reference.type` = :attr:`Reference_types.External_reference`, the type
-        of the first key of :attr:`Reference.keys` shall be one of
+        For external references, i.e. :class:`Reference`'s with
+        :attr:`Reference.type` = :attr:`Reference_types.External_reference`, the value
+        of :attr:`Key.type` of the first key of :attr:`Reference.keys` shall be one of
         :const:`Generic_globally_identifiables`.
 
     :constraint AASd-123:
