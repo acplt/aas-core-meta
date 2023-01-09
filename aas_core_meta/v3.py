@@ -2080,7 +2080,7 @@ class Specific_asset_id(Has_semantics):
     The specific asset ID is not necessarily globally unique.
     """
 
-    name: Non_empty_string
+    name: Label_type
     """Name of the identifier"""
 
     value: Non_empty_string
