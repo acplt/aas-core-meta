@@ -3348,7 +3348,7 @@ class Event_payload(DBC):
     Timestamp in UTC, when this event was triggered.
     """
 
-    payload: Optional["Non_empty_string"]
+    payload: Optional["Blob_type"]
     """
     Event specific payload.
     """
