@@ -1233,7 +1233,7 @@ class Path_type(Non_empty_string, DBC):
 
 
 @reference_in_the_book(section=(5, 7, 12, 2))
-class Qualifier_type(Non_empty_string, DBC):
+class Qualifier_type(Name_type, DBC):
     """
     string
     """
