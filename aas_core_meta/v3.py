@@ -3683,26 +3683,6 @@ class Capability(Submodel_element):
         )
 
 
-Valid_categories_for_concept_description: Set[str] = constant_set(
-    values=[
-        "VALUE",
-        "PROPERTY",
-        "REFERENCE",
-        "DOCUMENT",
-        "CAPABILITY",
-        "RELATIONSHIP",
-        "COLLECTION",
-        "FUNCTION",
-        "EVENT",
-        "ENTITY",
-        "APPLICATION_CLASS",
-        "QUALIFIER",
-        "VIEW",
-    ],
-    description="""\
-Categories for :class:`Concept_description` as defined in :constraintref:`AASd-051`""",
-)
-
 # NOTE (mristin, 2022-08-19):
 # We make the following verification functions implementation-specific since the casts
 # are very clumsy to formalize and transpile in a readable way across languages.
@@ -3970,14 +3950,6 @@ def data_specification_IEC_61360s_have_definition_at_least_in_english(
 )
 @invariant(
     lambda self:
-    not (self.category is not None)
-    or self.category in Valid_categories_for_concept_description,
-    "Constraint AASd-051: A concept description shall have one of "
-    "the following categories: 'VALUE', 'PROPERTY', 'REFERENCE', 'DOCUMENT', "
-    "'CAPABILITY',; 'RELATIONSHIP', 'COLLECTION', 'FUNCTION', 'EVENT', 'ENTITY', "
-    "'APPLICATION_CLASS', 'QUALIFIER', 'VIEW'.")
-@invariant(
-    lambda self:
     not (self.is_case_of is not None)
     or len(self.is_case_of) >= 1,
     "Is-case-of must be either not set or have at least one item"
@@ -3990,15 +3962,6 @@ class Concept_description(Identifiable, Has_data_specification):
 
     The description of the concept should follow a standardized schema (realized as
     data specification template).
-
-    :constraint AASd-051:
-
-        A :class:`Concept_description` shall have one of the following categories
-        ``VALUE``, ``PROPERTY``, ``REFERENCE``, ``DOCUMENT``, ``CAPABILITY``,
-        ``RELATIONSHIP``, ``COLLECTION``, ``FUNCTION``, ``EVENT``, ``ENTITY``,
-        ``APPLICATION_CLASS``, ``QUALIFIER``, ``VIEW``.
-
-        Default: ``PROPERTY``.
 
     :constraint AASc-004:
 
@@ -4038,13 +4001,6 @@ class Concept_description(Identifiable, Has_data_specification):
         using data specification IEC61360,
         the :attr:`Data_specification_IEC_61360.value` shall be set.
     """
-
-    @implementation_specific
-    @ensure(lambda result: result in Valid_categories_for_concept_description)
-    def category_or_default(self) -> str:
-        # NOTE (mristin, 2022-04-7):
-        # This implementation will not be transpiled, but is given here as reference.
-        return self.category if self.category is not None else "PROPERTY"
 
     is_case_of: Optional[List["Reference"]]
     """
