@@ -3362,7 +3362,7 @@ class Event_payload(DBC):
         observable_semantic_id: Optional["Reference"] = None,
         topic: Optional["Message_topic_type"] = None,
         subject_id: Optional["Reference"] = None,
-        payload: Optional["Non_empty_string"] = None,
+        payload: Optional["Blob_type"] = None,
     ) -> None:
         self.source = source
         self.observable_reference = observable_reference
