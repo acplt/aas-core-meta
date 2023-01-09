@@ -1463,7 +1463,7 @@ class Referable(Has_extensions):
     This ID is unique within the name space of the element.
     """
 
-    category: Optional[Non_empty_string]
+    category: Optional[Name_type]
     """
     The category is a value that gives further meta information
     w.r.t. to the class of the element.
