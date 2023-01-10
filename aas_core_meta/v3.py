@@ -1684,6 +1684,30 @@ class Administrative_information(Has_data_specification):
     revision: Optional[Non_empty_string]
     """Revision of the element."""
 
+    creator: Optional["Reference"]
+    """The subject ID of the subject responsible for making the element."""
+
+    template_id: Optional["Identifier"]
+    """
+    Identifier of the template that guided the creation of the element.
+    
+    .. note::
+
+       In case of a submodel the :attr:`template_id` is the identifier 
+       of the submodel template_id that guided the creation of the submodel
+
+    .. note::
+
+       The :attr:`Submodel.administration.template_id` is not relevant for validation. 
+       For validation the :attr:`Submodel.semantic_id` shall be used.
+       
+    .. note::
+
+       Usage of :attr:`template_id` is not restricted to submodel instances. So also 
+       the creation of submodel templates can be guided by another submodel template.
+    """
+
+
     def __init__(
         self,
         embedded_data_specifications: Optional[
@@ -1691,6 +1715,8 @@ class Administrative_information(Has_data_specification):
         ] = None,
         version: Optional[Non_empty_string] = None,
         revision: Optional[Non_empty_string] = None,
+        creator: Optional["Reference"] = None,
+        template_id: Optional["Identifier"] = None,
     ) -> None:
         Has_data_specification.__init__(
             self, embedded_data_specifications=embedded_data_specifications
@@ -1698,6 +1724,8 @@ class Administrative_information(Has_data_specification):
 
         self.version = version
         self.revision = revision
+        self.creator = creator
+        self.template_id = template_id
 
 
 # fmt: off
