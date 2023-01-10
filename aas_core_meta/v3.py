@@ -2032,6 +2032,20 @@ class Asset_information(DBC):
     e.g., serial number etc.
     """
 
+    asset_type: Optional["Identifier"]
+    """
+    In case :attr:`asset_kind' is applicable the :attr:`asset_type' is the asset ID 
+    of the type asset of the asset under consideration 
+    as identified by :attr:`global_asset_id'.
+
+    .. note::
+    
+        In case :attr:`asset_kind' is "Instance" than the :attr:`asset_type' denotes 
+        which "Type" the asset is of. But it is also possible 
+        to have an :attr:`asset_type' of an asset of kind "Type".
+
+    """
+
     default_thumbnail: Optional["Resource"]
     """
     Thumbnail of the asset represented by the Asset Administration Shell.
@@ -2044,11 +2058,13 @@ class Asset_information(DBC):
         asset_kind: "Asset_kind",
         global_asset_id: Optional["Reference"] = None,
         specific_asset_ids: Optional[List["Specific_asset_id"]] = None,
+        asset_type: Optional["Identifier"] = None,
         default_thumbnail: Optional["Resource"] = None,
     ) -> None:
         self.asset_kind = asset_kind
         self.global_asset_id = global_asset_id
         self.specific_asset_ids = specific_asset_ids
+        self.asset_type = asset_type
         self.default_thumbnail = default_thumbnail
 
 
