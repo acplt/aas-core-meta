@@ -1103,7 +1103,7 @@ class Non_empty_string(str, DBC):
 
         An attribute with data type ``string`` is not allowed to be empty.
 
-    :constraint AASd-100:
+    :constraint AASd-130:
 
         An attribute with data type "string" shall consist of these characters only:
         ^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$.
