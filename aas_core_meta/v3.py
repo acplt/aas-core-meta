@@ -2100,12 +2100,24 @@ class Asset_kind(Enum):
 
 
 @reference_in_the_book(section=(5, 7, 4), index=3)
+@invariant(
+    lambda self:
+    not (self.specific_asset_id is not None)
+    or (self.specific_asset_id.type == Reference_types.External_reference),
+    "Constraint AASd-133: SpecificAssetId/externalSubjectId shall be "
+    "a global reference, i.e. Reference/type = GlobalReference."
+)
 class Specific_asset_id(Has_semantics):
     """
     A specific asset ID describes a generic supplementary identifying attribute of the
     asset.
 
     The specific asset ID is not necessarily globally unique.
+
+    :constraint AASd-133:
+
+        :attr:`external_subject_id' shall be a global reference,
+        i.e. :attr:`Reference.type' = GlobalReference.
     """
 
     name: Label_type
