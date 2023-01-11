@@ -3220,7 +3220,7 @@ class Entity(Submodel_element):
     Describes whether the entity is a co-managed entity or a self-managed entity.
     """
 
-    global_asset_id: Optional["Reference"]
+    global_asset_id: Optional["Identifier"]
     """
     Global identifier of the asset the entity is representing.
 
@@ -3250,7 +3250,7 @@ class Entity(Submodel_element):
             List["Embedded_data_specification"]
         ] = None,
         statements: Optional[List["Submodel_element"]] = None,
-        global_asset_id: Optional["Reference"] = None,
+        global_asset_id: Optional["Identifier"] = None,
         specific_asset_id: Optional["Specific_asset_id"] = None,
     ) -> None:
         Submodel_element.__init__(
