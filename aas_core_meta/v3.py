@@ -316,7 +316,7 @@ def matches_aasd_130_string(text: str) -> bool:
     :returns: True if the :paramref:`text` conforms to the pattern
     """
     # noinspection SpellCheckingInspection
-    pattern = r"^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$."
+    pattern = r"^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$"
     return match(pattern, text) is not None
 
 
@@ -1089,7 +1089,7 @@ def reference_key_values_equal(that: "Reference", other: "Reference") -> bool:
     lambda self: matches_aasd_130_string(self),
     "Constraint AASd-130: An attribute with data type ""string"" shall consist "
     "of these characters only: "
-    r"^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$."
+    r"^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$"
 )
 # fmt: on
 class Non_empty_string(str, DBC):
