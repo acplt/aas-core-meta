@@ -940,22 +940,6 @@ def value_consistent_with_xsd_type(value: str, value_type: "Data_type_def_xsd") 
 
 
 @verification
-def matches_global_asset_id_literally(text: str) -> bool:
-    """
-    Check that the :paramref:`text` matches ``globalAssetId`` case-insensitive.
-
-    The case-insensitivity depends on the culture. For example in Turkish, uppercase
-    "i" is "İ", not "I". We assume the culture to be English, and explicitly check
-    for English case-folding.
-
-    :param text: which needs to match ``globalAssetId`` literally
-    :return: True if the :paramref:`text` matches case-insensitive
-    """
-    pattern = "^[gG][lL][oO][bB][aA][lL][aA][sS][sS][eE][tT][iI][dD]$"
-    return match(pattern, text) is not None
-
-
-@verification
 def is_model_reference_to(reference: "Reference", expected_type: "Key_types") -> bool:
     """
     Check that the target of the model reference matches the :paramref:`expected_type`.
@@ -2012,7 +1996,7 @@ class Asset_information(DBC):
     :attr:`Asset_kind.Instance`.
     """
 
-    global_asset_id: Optional["Reference"]
+    global_asset_id: Optional["Identifier"]
     """
     Global identifier of the asset the AAS is representing.
 
@@ -2056,7 +2040,7 @@ class Asset_information(DBC):
     def __init__(
         self,
         asset_kind: "Asset_kind",
-        global_asset_id: Optional["Reference"] = None,
+        global_asset_id: Optional["Identifier"] = None,
         specific_asset_ids: Optional[List["Specific_asset_id"]] = None,
         asset_type: Optional["Identifier"] = None,
         default_thumbnail: Optional["Resource"] = None,
