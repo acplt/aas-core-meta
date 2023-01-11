@@ -2269,6 +2269,14 @@ class Submodel_element(
     assets.
 
     It is recommended to add a :attr:`Has_semantics.semantic_id` to a submodel element.
+
+    :constraint AASd-129:
+
+        If any :attr:`Qualifier.kind` value of :attr:`qualifiers` (attribute qualifier
+        inherited via Qualifiable) is equal to :attr:`Qualifier_kind.Template_qualifier`
+        then the submodel element shall be part of a submodel template, i.e.
+        a Submodel with :attr:`Submodel.kind` (attribute kind inherited via HasKind)
+        value is equal to Template.
     """
 
     def __init__(
