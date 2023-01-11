@@ -88,7 +88,7 @@ __book_url__ = (
 )
 __book_version__ = "V3.0RC02"
 
-__xml_namespace__ = "https://admin-shell.io/aas/3/0/RC02"
+__xml_namespace__ = "https://admin-shell.io/aas/3/0"
 
 # region Verification
 
@@ -1698,7 +1698,7 @@ class Administrative_information(Has_data_specification):
 
     .. note::
 
-       The :attr:`Submodel.administration.template_id` is not relevant for validation. 
+       The :attr:`template_id` is not relevant for validation in Submodels. 
        For validation the :attr:`Submodel.semantic_id` shall be used.
        
     .. note::
@@ -2034,15 +2034,15 @@ class Asset_information(DBC):
 
     asset_type: Optional["Identifier"]
     """
-    In case :attr:`asset_kind' is applicable the :attr:`asset_type' is the asset ID 
+    In case :attr:`asset_kind` is applicable the :attr:`asset_type` is the asset ID 
     of the type asset of the asset under consideration 
-    as identified by :attr:`global_asset_id'.
+    as identified by :attr:`global_asset_id`.
 
     .. note::
     
-        In case :attr:`asset_kind' is "Instance" than the :attr:`asset_type' denotes 
+        In case :attr:`asset_kind` is "Instance" than the :attr:`asset_type` denotes 
         which "Type" the asset is of. But it is also possible 
-        to have an :attr:`asset_type' of an asset of kind "Type".
+        to have an :attr:`asset_type` of an asset of kind "Type".
 
     """
 
@@ -2143,9 +2143,9 @@ class Specific_asset_id(Has_semantics):
         self,
         name: Label_type,
         value: Identifier,
-        external_subject_id: Optional["Reference"] = None,
         semantic_id: Optional["Reference"] = None,
         supplemental_semantic_ids: Optional[List["Reference"]] = None,
+        external_subject_id: Optional["Reference"] = None,
     ) -> None:
         Has_semantics.__init__(
             self,
