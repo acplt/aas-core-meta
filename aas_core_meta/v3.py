@@ -1243,6 +1243,11 @@ class Id_short(Name_type, DBC):
         ID-short of :class:`Referable`'s shall only feature letters, digits,
         underscore (``_``); starting mandatory with a letter.
         *I.e.* ``[a-zA-Z][a-zA-Z0-9_]*``.
+
+    :constraint AASd-117:
+
+        Constraint AASd-117: idShort of non-identifiable :class:`Referable`
+        not being a direct child of a :class:`SubmodelElementList` shall be specified.
     """
 
 
