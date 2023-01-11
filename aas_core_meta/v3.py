@@ -98,7 +98,7 @@ def matches_id_short(text: str) -> bool:
     """
     Check that :paramref:`text` is a valid short ID.
     """
-    pattern = f"^[a-zA-Z][a-zA-Z0-9_]+$"
+    pattern = f"^[a-zA-Z][a-zA-Z0-9_]*$"
 
     return match(pattern, text) is not None
 
@@ -1232,7 +1232,7 @@ class Value_data_type(str, DBC):
 @invariant(
     lambda self: matches_id_short(self),
     "ID-short of Referables shall only feature letters, digits, underscore (``_``); "
-    "starting mandatory with a letter. *I.e.* ``[a-zA-Z][a-zA-Z0-9_]+``.",
+    "starting mandatory with a letter. *I.e.* ``[a-zA-Z][a-zA-Z0-9_]*``.",
 )
 class Id_short(Name_type, DBC):
     """
@@ -1242,7 +1242,7 @@ class Id_short(Name_type, DBC):
 
         ID-short of :class:`Referable`'s shall only feature letters, digits,
         underscore (``_``); starting mandatory with a letter.
-        *I.e.* ``[a-zA-Z][a-zA-Z0-9_]+``.
+        *I.e.* ``[a-zA-Z][a-zA-Z0-9_]*``.
     """
 
 
