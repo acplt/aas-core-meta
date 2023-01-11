@@ -1093,7 +1093,7 @@ def reference_key_values_equal(that: "Reference", other: "Reference") -> bool:
 )
 # fmt: on
 class Non_empty_string(str, DBC):
-    """
+    r"""
     Represent a string with at least one character.
 
     This allows us to model the following constraint.
