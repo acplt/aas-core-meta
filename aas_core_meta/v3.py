@@ -1969,6 +1969,13 @@ class Asset_administration_shell(Identifiable, Has_data_specification):
     or len(self.specific_asset_ids) >= 1,
     "Specific asset IDs must be either not set or have at least one item"
 )
+@invariant(
+    lambda self:
+    self.global_asset_id is not None
+    or len(self.specific_asset_ids) >= 1,
+    "Constraint AASd-131: For AssetInformation either "
+    "the globalAssetId shall be defined or at least one specificAssetId."
+)
 @reference_in_the_book(section=(5, 7, 4), index=0)
 # fmt: on
 class Asset_information(DBC):
@@ -1988,6 +1995,11 @@ class Asset_information(DBC):
         ``globalAssetId`` (case-insensitive) is a reserved key. If used as value for
         :attr:`Specific_asset_id.name` then :attr:`Specific_asset_id.value` shall be
         identical to :attr:`global_asset_id`.
+
+    :constraint AASd-131:
+
+        For AssetInformation either the :attr:`global_asset_id` shall be defined
+        or at least one specificAssetId.
     """
 
     asset_kind: "Asset_kind"
