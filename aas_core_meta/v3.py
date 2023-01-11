@@ -1083,8 +1083,7 @@ def reference_key_values_equal(that: "Reference", other: "Reference") -> bool:
 # fmt: off
 @invariant(
     lambda self: len(self) >= 1,
-    "Constraint AASd-100: An attribute with data type ``string`` is not allowed "
-    "to be empty."
+    "Check if string is not empty."
 )
 @invariant(
     lambda self: matches_aasd_130_string(self),
@@ -1098,10 +1097,6 @@ class Non_empty_string(str, DBC):
     Represent a string with at least one character.
 
     This allows us to model the following constraint.
-
-    :constraint AASd-100:
-
-        An attribute with data type ``string`` is not allowed to be empty.
 
     :constraint AASd-130:
 
@@ -2158,8 +2153,8 @@ class Specific_asset_id(Has_semantics):
 
     :constraint AASd-133:
 
-        :attr:`external_subject_id' shall be a global reference,
-        i.e. :attr:`Reference.type' = GlobalReference.
+        :attr:`external_subject_id` shall be a global reference,
+        i.e. :attr:`Reference.type` = GlobalReference.
     """
 
     name: Label_type
