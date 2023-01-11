@@ -305,6 +305,20 @@ def qualifier_types_are_unique(qualifiers: List["Qualifier"]) -> bool:
 
     return True
 
+@verification
+def matches_aasd_130_string(text: str) -> bool:
+    """
+    Check that :paramref:`text` conforms to the pattern of the Constraint AASd-130.
+    Ensures that encoding is possible and interoperability
+    between different serializations is possible.
+
+    :param text: Text to be checked
+    :returns: True if the :paramref:`text` conforms to the pattern
+    """
+    # noinspection SpellCheckingInspection
+    pattern = r"^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$."
+    return match(pattern, text) is not None
+
 
 # noinspection SpellCheckingInspection
 @verification
@@ -1072,6 +1086,12 @@ def reference_key_values_equal(that: "Reference", other: "Reference") -> bool:
     "Constraint AASd-100: An attribute with data type ``string`` is not allowed "
     "to be empty."
 )
+@invariant(
+    lambda self: matches_aasd_130_string(self),
+    "Constraint AASd-130: An attribute with data type ""string"" shall consist "
+    "of these characters only: "
+    r"^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$."
+)
 # fmt: on
 class Non_empty_string(str, DBC):
     """
@@ -1082,6 +1102,11 @@ class Non_empty_string(str, DBC):
     :constraint AASd-100:
 
         An attribute with data type ``string`` is not allowed to be empty.
+
+    :constraint AASd-100:
+
+        An attribute with data type "string" shall consist of these characters only:
+        ^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\u00010000-\u0010FFFF]*$.
     """
 
 
