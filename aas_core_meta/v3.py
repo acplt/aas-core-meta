@@ -1267,7 +1267,7 @@ class Id_short(Name_type, DBC):
     :constraint AASd-117:
 
         Constraint AASd-117: idShort of non-identifiable :class:`Referable`
-        not being a direct child of a :class:`SubmodelElementList` shall be specified.
+        not being a direct child of a :class:`Submodel_element_list` shall be specified.
     """
 
 
