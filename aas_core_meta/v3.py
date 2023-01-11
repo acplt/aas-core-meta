@@ -2420,8 +2420,8 @@ class Aas_submodel_elements(Enum):
         element.id_short is None
         for element in self.value
     ),
-    "Constraint AASd-120: ID-shorts of submodel elements within a SubmodelElementList "
-    "shall not be specified."
+    "Constraint AASd-120: idShort of submodel elements being a direct child of a  "
+    "SubmodelElementList shall not be specified."
 )
 @invariant(
     lambda self:
