@@ -3460,7 +3460,7 @@ class Event_payload(DBC):
         This is a global reference.
     """
 
-    time_stamp: "Date_time_stamp_UTC"
+    time_stamp: "Date_time"
     """
     Timestamp in UTC, when this event was triggered.
     """
@@ -3474,7 +3474,7 @@ class Event_payload(DBC):
         self,
         source: "Reference",
         observable_reference: "Reference",
-        time_stamp: "Date_time_stamp_UTC",
+        time_stamp: "Date_time",
         source_semantic_id: Optional["Reference"] = None,
         observable_semantic_id: Optional["Reference"] = None,
         topic: Optional["Message_topic_type"] = None,
