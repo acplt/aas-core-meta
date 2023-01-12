@@ -499,6 +499,25 @@ def matches_xs_date_time(text: str) -> bool:
     return match(pattern, text) is not None
 
 
+# noinspection PyUnusedLocal
+@verification
+@implementation_specific
+def is_xs_date_time(text: str) -> bool:
+    """
+    Check that :paramref:`text` is a ``xs:dateTime``.
+
+    The ``text`` is assumed to match a pre-defined pattern for ``xs:dateTime``.
+    In this function, we check for days of month (e.g., February 29th).
+
+    See: https://www.w3.org/TR/xmlschema11-2/#dateTime
+
+    :param text: Text to be checked
+    :returns: True if the :paramref:`text` is a valid ``xs:dateTime``
+    """
+    raise NotImplementedError()
+
+
+
 @verification
 def matches_xs_date_time_stamp(text: str) -> bool:
     """
@@ -1116,6 +1135,19 @@ class Non_empty_string(str, DBC):
 )
 class Date_time_stamp_UTC(str, DBC):
     """Represent an ``xs:dateTimeStamp`` with the time zone fixed to UTC."""
+
+
+@invariant(
+    lambda self: is_xs_date_time(self),
+    "The value must represent a valid xs:dateTimeStamp with the time zone fixed to UTC.",
+)
+@invariant(
+    lambda self: matches_xs_date_time(self),
+    "The value must match the pattern of xs:dateTime",
+)
+class Date_time(str, DBC):
+    """Represent an ``xs:dateTime``."""
+
 
 
 @reference_in_the_book(section=(5, 7, 12, 2))
