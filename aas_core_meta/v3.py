@@ -1500,12 +1500,12 @@ class Referable(Has_extensions):
         the :attr:`id_short` is typically identical to the short name in English.
     """
 
-    display_name: Optional[List["Lang_string"]]
+    display_name: Optional[List["Lang_string_name_type"]]
     """
     Display name. Can be provided in several languages.
     """
 
-    description: Optional[List["Lang_string"]]
+    description: Optional[List["Lang_string_text_type"]]
     """
     Description or comments on the element.
 
@@ -1525,8 +1525,8 @@ class Referable(Has_extensions):
         extensions: Optional[List["Extension"]] = None,
         category: Optional[Name_type] = None,
         id_short: Optional[Id_short] = None,
-        display_name: Optional[List["Lang_string"]] = None,
-        description: Optional[List["Lang_string"]] = None,
+        display_name: Optional[List["Lang_string_name_type"]] = None,
+        description: Optional[List["Lang_string_text_type"]] = None,
     ) -> None:
         Has_extensions.__init__(self, extensions=extensions)
 
