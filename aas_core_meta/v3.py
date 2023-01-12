@@ -2863,7 +2863,7 @@ class Multi_language_property(Data_element):
         :attr:`value_id`.
     """
 
-    value: Optional[List["Lang_string"]]
+    value: Optional[List["Lang_string_text_type"]]
     """
     The value of the property instance.
     """
@@ -2890,7 +2890,7 @@ class Multi_language_property(Data_element):
         embedded_data_specifications: Optional[
             List["Embedded_data_specification"]
         ] = None,
-        value: Optional[List["Lang_string"]] = None,
+        value: Optional[List["Lang_string_text_type"]] = None,
         value_id: Optional["Reference"] = None,
     ) -> None:
         Data_element.__init__(
