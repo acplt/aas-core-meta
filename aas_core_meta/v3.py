@@ -4699,6 +4699,30 @@ class Lang_string(DBC):
         self.text = text
 
 
+@invariant(
+    lambda self: len(self.text) >= 1,
+    "String shall have a minimum length of 1 character.",
+)
+@invariant(
+    lambda self: len(self.text) <= 128,
+    "String shall have a maximum length of 128 characters.",
+)
+class Lang_string_name_type(Lang_string, DBC):
+    """String with length 128 maximum and minimum 1 characters and with language tags"""
+
+
+@invariant(
+    lambda self: len(self.text) >= 1,
+    "String shall have a minimum length of 1 character.",
+)
+@invariant(
+    lambda self: len(self.text) <= 1023,
+    "String shall have a maximum length of 1023 characters.",
+)
+class Lang_string_text_type(Lang_string, DBC):
+    """String with length 1023 maximum and minimum 1 characters and with language tags"""
+
+
 # fmt: off
 @invariant(
     lambda self:
