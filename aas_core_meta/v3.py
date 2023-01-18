@@ -1818,6 +1818,11 @@ class Qualifiable(DBC):
 class Qualifier_kind(Enum):
     """
     Enumeration for kinds of qualifiers.
+
+    .. note::
+
+        This element is experimental and therefore may be subject to change or may be removed completely in future
+        versions of the meta-model.
     """
 
     Value_qualifier = "ValueQualifier"
@@ -3387,6 +3392,11 @@ class Direction(Enum):
 class State_of_event(Enum):
     """
     State of an event
+
+    .. note::
+
+        This element is experimental and therefore may be subject to change or may be removed completely in future
+        versions of the meta-model.
     """
 
     On = "on"
@@ -3414,7 +3424,14 @@ class State_of_event(Enum):
 @reference_in_the_book(section=(5, 7, 7, 2), index=3)
 # fmt: on
 class Event_payload(DBC):
-    """Defines the necessary information of an event instance sent out or received."""
+    """
+    Defines the necessary information of an event instance sent out or received.
+
+    .. note::
+
+        This element is experimental and therefore may be subject to change or may be removed completely in future
+        versions of the meta-model.
+    """
 
     source: "Reference"
     """
@@ -3501,6 +3518,11 @@ class Event_payload(DBC):
 class Event_element(Submodel_element):
     """
     An event element.
+
+    .. note::
+
+        This element is experimental and therefore may be subject to change or may be removed completely in future
+        versions of the meta-model.
     """
 
     def __init__(
@@ -3554,6 +3576,11 @@ class Event_element(Submodel_element):
 class Basic_event_element(Event_element):
     """
     A basic event element.
+
+    .. note::
+
+        This element is experimental and therefore may be subject to change or may be removed completely in future
+        versions of the meta-model.
     """
 
     observed: "Reference"
