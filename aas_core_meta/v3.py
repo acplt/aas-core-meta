@@ -2246,6 +2246,20 @@ class Specific_asset_id(Has_semantics):
 )
 @invariant(
     lambda self:
+    not (self.kind == Modeling_kind.Template)
+    or (
+        not any(
+            qualifier.kind == Qualifier_kind.Template_qualifier
+            for qualifier in self.submodel_elements.qualifiers
+        )
+    ),
+    "Constraint AASd-129: If any Qualifier/kind value of a SubmodelElement/qualifier "
+    "(attribute qualifier inherited via Qualifiable) is equal to TemplateQualifier then the submodel element " 
+    "shall be part of a submodel template, i.e. a Submodel with Submodel/kind  " 
+    "(attribute kind inherited via HasKind) value  is equal to Template"
+)
+@invariant(
+    lambda self:
     not (self.submodel_elements is not None)
     or (id_shorts_are_unique(self.submodel_elements)),
     "Constraint AASd-022: ID-short of non-identifiable referables "
