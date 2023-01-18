@@ -3365,6 +3365,11 @@ class Entity(Submodel_element):
 class Direction(Enum):
     """
     Direction
+
+    .. note::
+
+        This element is experimental and therefore may be subject to change or may be removed completely in future
+        versions of the meta-model.
     """
 
     Input = "input"
