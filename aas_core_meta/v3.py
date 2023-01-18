@@ -3432,8 +3432,11 @@ class State_of_event(Enum):
 )
 @invariant(
     lambda self:
-    is_model_reference_to_referable(self.source),
-    "Source must be a model reference to a referable."
+    (
+        is_model_reference_to(self.source, Key_types.Event_element)
+        or is_model_reference_to(self.source, Key_types.Basic_event_element)
+    ),
+    "Source must be a model reference to an EventElement."
 )
 @reference_in_the_book(section=(5, 7, 7, 2), index=3)
 # fmt: on
