@@ -1738,6 +1738,16 @@ class Has_data_specification(DBC):
     "be unspecified. This means, a revision requires a version. If there is "
     "no version there is no revision either. Revision is optional."
 )
+@invariant(
+    lambda self:
+    not (len(self.version) > 4),
+    "Constraint AASd-135: AdministrativeInformation/version shall have a length of maximum 4 characters."
+)
+@invariant(
+    lambda self:
+    not (len(self.revision) > 4),
+    "Constraint AASd-136: AdministrativeInformation/revision shall have a length of maximum 4 characters."
+)
 @reference_in_the_book(section=(5, 7, 2, 5))
 # fmt: on
 class Administrative_information(Has_data_specification):
@@ -3768,6 +3778,10 @@ class Basic_event_element(Event_element):
     not (self.input_variables is not None)
     or len(self.input_variables) >= 1,
     "Input variables must be either not set or have at least one item"
+)
+@invariant(
+    # Todo: Somehow Join all three variable Lists, if exist and put it in id_shorts_are_unique()
+    lambda self: id_shorts_are_unique(self.input_variables)
 )
 @reference_in_the_book(section=(5, 7, 7, 10))
 # fmt: on
