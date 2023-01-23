@@ -951,6 +951,39 @@ def matches_xs_string(text: str) -> bool:
     return match(pattern, text) is not None
 
 
+@verification
+def matches_message_topic_type(text: str) -> bool:
+    """
+    Check that :paramref:`text` conforms to the length constraint of 255 characters and min 1 char
+
+    :param text: Text to be checked
+    :return: True if yes
+    """
+    return 0 < len(text) <= 255
+
+
+@verification
+def matches_name_type(text: str) -> bool:
+    """
+    Check that :paramref:`text` conforms to the length constraint of 128 characters and min 1 char
+
+    :param text: Text to be checked
+    :return: True if yes
+    """
+    return 0 < len(text) <= 128
+
+
+@verification
+def matches_label_type(text: str) -> bool:
+    """
+    Check that :paramref:`text` conforms to the length constraint of 64 characters and min 1 char
+
+    :param text: Text to be checked
+    :return: True if yes
+    """
+    return 0 < len(text) <= 64
+
+
 # noinspection PyUnusedLocal
 @verification
 @implementation_specific
@@ -4772,12 +4805,34 @@ class Lang_string(DBC):
     language: BCP_47_language_tag
     """Language tag conforming to BCP 47"""
 
-    text: str
+    text: Lang_string_text_type
     """Text in the :attr:`language`"""
 
     def __init__(self, language: BCP_47_language_tag, text: str) -> None:
         self.language = language
         self.text = text
+
+
+@verification
+def matches_multi_language_name_type(lang_string: Lang_string) -> bool:
+    """
+    Check that :paramref:`lang_string` conforms to the length constraint of 128 characters and min 1 char
+
+    :param lang_string: LangString to be checked
+    :return: True if yes
+    """
+    return 0 < len(lang_string.text) <= 128
+
+
+@verification
+def matches_multi_language_text_type(lang_string: Lang_string) -> bool:
+    """
+    Check that :paramref:`lang_string` conforms to the length constraint of 1023 characters and min 1 char
+
+    :param lang_string: LangString to be checked
+    :return: True if yes
+    """
+    return 0 < len(lang_string.text) <= 1023
 
 
 @invariant(
