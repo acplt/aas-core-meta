@@ -1740,12 +1740,14 @@ class Has_data_specification(DBC):
 )
 @invariant(
     lambda self:
-    not (len(self.version) > 4),
+    not (self.version is not None)
+    or not (len(self.version) > 4),
     "Constraint AASd-135: AdministrativeInformation/version shall have a length of maximum 4 characters."
 )
 @invariant(
     lambda self:
-    not (len(self.revision) > 4),
+    not (self.revision is not None)
+    or not (len(self.revision) > 4),
     "Constraint AASd-136: AdministrativeInformation/revision shall have a length of maximum 4 characters."
 )
 @reference_in_the_book(section=(5, 7, 2, 5))
