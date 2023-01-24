@@ -2289,7 +2289,8 @@ class Specific_asset_id(Has_semantics):
 )
 @invariant(
     lambda self:
-    not (self.kind == Modeling_kind.Template)
+    not (self.submodel_elements is not None)
+    or not (self.kind == Modeling_kind.Template)
     or (
         not any(
             qualifier.kind == Qualifier_kind.Template_qualifier
