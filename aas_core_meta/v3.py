@@ -104,15 +104,15 @@ def matches_id_short(text: str) -> bool:
 
 
 @verification
-def matches_xs_date_time_stamp_UTC(text: str) -> bool:
+def matches_xs_date_time_UTC(text: str) -> bool:
     """
-    Check that :paramref:`text` conforms to the pattern of an ``xs:dateTimeStamp``.
+    Check that :paramref:`text` conforms to the pattern of an ``xs:dateTime``.
 
     The time zone must be fixed to UTC. We verify only that the ``text`` matches
     a pre-defined pattern. We *do not* verify that the day of month is
     correct nor do we check for leap seconds.
 
-    See: https://www.w3.org/TR/xmlschema11-2/#dateTimeStamp
+    See: https://www.w3.org/TR/xmlschema11-2/#dateTime
 
     :param text: Text to be checked
     :returns: True if the :paramref:`text` conforms to the pattern
@@ -125,14 +125,14 @@ def matches_xs_date_time_stamp_UTC(text: str) -> bool:
     minute_frag = f"[0-5]{digit}"
     second_frag = f"([0-5]{digit})(\\.{digit}+)?"
     end_of_day_frag = "24:00:00(\\.0+)?"
-    timezone_frag = "Z"
-    date_time_stamp_lexical_rep = (
+    timezone_frag = "(Z|+00:00|-00:00)"
+    date_time_lexical_rep = (
         f"{year_frag}-{month_frag}-{day_frag}"
         f"T"
         f"(({hour_frag}:{minute_frag}:{second_frag})|{end_of_day_frag})"
         f"{timezone_frag}"
     )
-    pattern = f"^{date_time_stamp_lexical_rep}$"
+    pattern = f"^{date_time_lexical_rep}$"
 
     return match(pattern, text) is not None
 
@@ -140,18 +140,18 @@ def matches_xs_date_time_stamp_UTC(text: str) -> bool:
 # noinspection PyUnusedLocal
 @verification
 @implementation_specific
-def is_xs_date_time_stamp_UTC(text: str) -> bool:
+def is_xs_date_time_UTC(text: str) -> bool:
     """
-    Check that :paramref:`text` is a ``xs:dateTimeStamp`` with time zone set to UTC.
+    Check that :paramref:`text` is a ``xs:dateTime`` with time zone set to UTC.
 
-    The ``text`` is assumed to match a pre-defined pattern for ``xs:dateTimeStamp`` with
+    The ``text`` is assumed to match a pre-defined pattern for ``xs:dateTime`` with
     the time zone set to UTC. In this function, we check for days of month (e.g.,
     February 29th).
 
-    See: https://www.w3.org/TR/xmlschema11-2/#dateTimeStamp
+    See: https://www.w3.org/TR/xmlschema11-2/#dateTime
 
     :param text: Text to be checked
-    :returns: True if the :paramref:`text` is a valid ``xs:dateTimeStamp`` in UTC
+    :returns: True if the :paramref:`text` is a valid ``xs:dateTime`` in UTC
     """
     raise NotImplementedError()
 
@@ -515,37 +515,6 @@ def is_xs_date_time(text: str) -> bool:
     :returns: True if the :paramref:`text` is a valid ``xs:dateTime``
     """
     raise NotImplementedError()
-
-
-
-@verification
-def matches_xs_date_time_stamp(text: str) -> bool:
-    """
-    Check that :paramref:`text` conforms to the pattern of an ``xs:dateTimeStamp``.
-
-    See: https://www.w3.org/TR/xmlschema11-2/#dateTimeStamp
-
-    :param text: Text to be checked
-    :returns: True if the :paramref:`text` conforms to the pattern
-    """
-    digit = "[0-9]"
-    year_frag = f"-?(([1-9]{digit}{digit}{digit}+)|(0{digit}{digit}{digit}))"
-    month_frag = f"((0[1-9])|(1[0-2]))"
-    day_frag = f"((0[1-9])|([12]{digit})|(3[01]))"
-    hour_frag = f"(([01]{digit})|(2[0-3]))"
-    minute_frag = f"[0-5]{digit}"
-    second_frag = f"([0-5]{digit})(\\.{digit}+)?"
-    end_of_day_frag = "24:00:00(\\.0+)?"
-    timezone_frag = rf"(Z|(\+|-)(0{digit}|1[0-3]):{minute_frag}|14:00)"
-    date_time_stamp_lexical_rep = (
-        f"{year_frag}-{month_frag}-{day_frag}"
-        f"T"
-        f"(({hour_frag}:{minute_frag}:{second_frag})|{end_of_day_frag})"
-        f"{timezone_frag}"
-    )
-
-    pattern = f"^{date_time_stamp_lexical_rep}$"
-    return match(pattern, text) is not None
 
 
 @verification
@@ -1000,7 +969,7 @@ def value_consistent_with_xsd_type(value: str, value_type: "Data_type_def_xsd") 
     # for most obvious pattern mismatches.
     #
     # However, bear in mind that the pattern checks are not enough! For example,
-    # consider a ``xs:dateTimeStamp``. You need to check not only that the value
+    # consider a ``xs:dateTime``. You need to check not only that the value
     # follows the pattern, but also that the day-of-month and leap seconds are taken
     # into account.
 
@@ -1158,21 +1127,21 @@ class Non_empty_string(str, DBC):
 
 
 @invariant(
-    lambda self: is_xs_date_time_stamp_UTC(self),
-    "The value must represent a valid xs:dateTimeStamp with the time zone fixed to UTC.",
+    lambda self: is_xs_date_time_UTC(self),
+    "The value must represent a valid xs:dateTime with the time zone fixed to UTC.",
 )
 @invariant(
-    lambda self: matches_xs_date_time_stamp_UTC(self),
-    "The value must match the pattern of xs:dateTimeStamp with the time zone fixed "
+    lambda self: matches_xs_date_time_UTC(self),
+    "The value must match the pattern of xs:dateTime with the time zone fixed "
     "to UTC.",
 )
-class Date_time_stamp_UTC(str, DBC):
-    """Represent an ``xs:dateTimeStamp`` with the time zone fixed to UTC."""
+class Date_time_UTC(str, DBC):
+    """Represent an ``xs:dateTime`` with the time zone fixed to UTC."""
 
 
 @invariant(
     lambda self: is_xs_date_time(self),
-    "The value must represent a valid xs:dateTimeStamp with the time zone fixed to UTC.",
+    "The value must represent a valid xs:dateTime",
 )
 @invariant(
     lambda self: matches_xs_date_time(self),
@@ -3545,7 +3514,7 @@ class Event_payload(DBC):
         This is a global reference.
     """
 
-    time_stamp: "Date_time"
+    time_stamp: "Date_time_UTC"
     """
     Timestamp in UTC, when this event was triggered.
     """
@@ -3690,13 +3659,13 @@ class Basic_event_element(Event_element):
         proprietary specification could be standardized by having respective Submodels.
     """
 
-    last_update: Optional["Date_time_stamp_UTC"]
+    last_update: Optional["Date_time_UTC"]
     """
     Timestamp in UTC, when the last event was received (input direction) or sent
     (output direction).
     """
 
-    min_interval: Optional["Date_time_stamp_UTC"]
+    min_interval: Optional["Date_time"]
     """
     For input direction, reports on the maximum frequency, the software entity behind
     the respective Referable can handle input events.
@@ -3707,7 +3676,7 @@ class Basic_event_element(Event_element):
     Might be not specified, that is, there is no minimum interval.
     """
 
-    max_interval: Optional["Date_time_stamp_UTC"]
+    max_interval: Optional["Date_time"]
     """
     For input direction: not applicable.
 
@@ -3736,9 +3705,9 @@ class Basic_event_element(Event_element):
         ] = None,
         message_topic: Optional["Message_topic_type"] = None,
         message_broker: Optional["Reference"] = None,
-        last_update: Optional["Date_time_stamp_UTC"] = None,
-        min_interval: Optional["Date_time_stamp_UTC"] = None,
-        max_interval: Optional["Date_time_stamp_UTC"] = None,
+        last_update: Optional["Date_time_UTC"] = None,
+        min_interval: Optional["Date_time"] = None,
+        max_interval: Optional["Date_time"] = None,
     ) -> None:
         Event_element.__init__(
             self,
@@ -4789,7 +4758,6 @@ class Data_type_def_xsd(Enum):
     Boolean = "xs:boolean"
     Date = "xs:date"
     Date_time = "xs:dateTime"
-    Date_time_stamp = "xs:dateTimeStamp"
     Double = "xs:double"
     Float = "xs:float"
     G_day = "xs:gDay"
